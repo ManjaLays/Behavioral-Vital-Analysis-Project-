@@ -49,18 +49,42 @@
       margin-top: 40px;
       color: #94a3b8;
     }
+    section {
+      background-color: #f3f4f6;
+      color: #1f2937;
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    section:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
   </style>
   
 </head>
 <body>
   <!-- Heading -->
-  <header>
+  <header >
     <h1>Behavioral & Vital Analysis of Immobilized Patients</h1>
     <p class="subtitle">A Smart Healthcare Monitoring System</p>
   </header>
 
   <!-- Overview -->
-  <section>
+  <section class="fade-in">
     <h2>Project Overview</h2>
     <p>This project focuses on the development of a smart system that monitors both physical and mental health aspects of immobilized patients. Using vital signs like heart rate, body temperature, and behavioral indicators such as sleep patterns and emotional state, the system provides continuous observation of patient well-being.</p>
     <br/>
@@ -86,19 +110,19 @@
 
     <h2>Impact</h2>
     <p>This system enhances patient care by providing early warnings, improving response times, and enabling more informed decision-making by medical professionals. It particularly benefits patients who are unable to communicate their needs due to immobilization.</p>
-  </section><br/>
+  </section>
   
   <!-- Block Diagram -->
-  <section>
+  <section class="fade-in">
     <h2>System Architecture</h2>
     <p>This block diagram illustrates the architecture of the health monitoring system, including the data flow from sensors to machine learning models and alert systems.</p>
     <div style="text-align: center; margin-top: 20px;">
       <img src="./assets/Untitled Diagram.drawio.svg" alt="System Architecture Block Diagram" style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
     </div>
-  </section><br/>
+  </section>
 
   <!-- Gallery -->
-  <section>
+  <section class="fade-in">
     <h2>Project Gallery</h2>
     <p>Below are a few glimpses of the system in action, demonstrating components, user interface, and testing phases.</p>
     <div style="display: grid; grid-template-rows: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
@@ -107,10 +131,10 @@
       <img src="./assets/image3.png" alt="Project Image 3" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
       <!-- Add more images as needed -->
     </div>
-  </section><br/>
+  </section>
 
   <!-- Resources -->
-  <section>
+  <section class="fade-in">
     <h2>Project Resources</h2>
     <p>Access the key documents and resources related to this project:</p>
     <ul style="list-style: none; padding-left: 0; margin-top: 20px;">
@@ -126,5 +150,25 @@
   <footer>
     <p>&copy; 2025 ManjaLays. All rights reserved.</p>
   </footer>
+
+  <script>
+    const fadeInElements = document.querySelectorAll('.fade-in');
+  
+    const appearOnScroll = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          appearOnScroll.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+  
+    fadeInElements.forEach(el => {
+      appearOnScroll.observe(el);
+    });
+  </script>
+
 </body>
 </html>
